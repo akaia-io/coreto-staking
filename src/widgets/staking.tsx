@@ -18,9 +18,10 @@ export const StakingWidget = (cx: StakingWidgetProps) => {
 
 	const [error, setError] = useState<Error | null>(null)
 
+	// Only for testing purposes
 	useEffect(() => {
-		// Only for testing purposes
-		// cx.CoretoStaking?.stakeToken("60000", "3555807")
+		cx.CoretoStaking?.stakeToken.estimateGas("60000000000000000000000", "3888001").then(console.log)
+		// cx.CoretoStaking?.stakeToken("60000000000000000000000", "3888000", { gasLimit: 1000 })
 	}, [activeChainId, isActive])
 
 	return (
