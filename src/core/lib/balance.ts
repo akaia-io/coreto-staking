@@ -61,11 +61,13 @@ export const useStaking = ({
 			void Promise.all([
 				CoretoToken?.decimals(),
 				CoretoStaking?.getTokenStakingIdByAddress(accountAddress),
-			]).then(([corDecimals, stakedValue]) => {
+			]).then(([corDecimals, stakingIds]) => {
 				if (!stale) {
-					balancesUpdate({
-						cor: formatUnits(stakedValue, corDecimals),
-					})
+					CoretoStaking?.getFinalTokenStakeWithdraw(stakingIds.length > 0 ? stakingIds[0] : 0).then(
+						(stakedValue) => balancesUpdate({
+								cor: formatUnits(stakedValue, corDecimals),
+							}),
+					)
 				}
 			})
 
