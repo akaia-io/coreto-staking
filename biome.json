@@ -1,0 +1,38 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": true,
+		"ignore": [],
+		"lineWidth": 100
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noUndeclaredVariables": "error"
+			},
+			"style": {
+				"noNegationElse": "error",
+				"noShoutyConstants": "error",
+				"useBlockStatements": "error",
+				"useSingleVarDeclarator": "off",
+				"useShorthandArrayType": "error"
+			},
+			"suspicious": {
+				"noEmptyInterface": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded"
+		},
+		"globals": [
+			"ContractAdapter",
+			"WalletAdapter",
+			"WidgetEnv"
+		]
+	}
+}
