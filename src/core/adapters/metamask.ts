@@ -8,8 +8,6 @@ const [metaMask, metaMaskHooks] = initializeConnector<MetaMask>(
 	(actions) => new MetaMask({ actions }),
 )
 
-// const signer = await provider.getSigner()
-
 export const MetamaskAdapter: WalletAdapter = {
 	fallback:
 		window.ethereum === null

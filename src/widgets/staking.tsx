@@ -1,25 +1,27 @@
 import { useWeb3React } from "@web3-react/core"
-import { useState } from "preact/hooks"
+import { useEffect, useState } from "preact/hooks"
 
 import { NetworkConnector } from "../core/uikit"
 import { Balance } from "../core/lib"
 
 interface StakingWidgetProps extends WidgetEnv {}
 
-export const StakingWidget = ({
-	env: { Metamask, CoretoToken, CoretoStaking },
-}: StakingWidgetProps) => {
-	const { connector } = useWeb3React(),
+export const StakingWidget = (cx: StakingWidgetProps) => {
+	const { Metamask } = cx,
+		{ connector } = useWeb3React(),
 		activeChainId = Metamask.useChainId(),
 		isActivating = Metamask.useIsActivating(),
 		isActive = Metamask.useIsActive(),
-		balance = Balance.useWallet({ Metamask, CoretoToken }),
-		stakingBalance = Balance.useStaking({ Metamask, CoretoToken, CoretoStaking }),
+		balance = Balance.useWallet(cx),
+		stakingBalance = Balance.useStaking(cx),
 		isStakingAvailable = isActive && parseFloat(stakingBalance.cor) > 0
 
 	const [error, setError] = useState<Error | null>(null)
 
-	CoretoStaking.stakeToken("60000", "3888000")
+	useEffect(() => {
+		// Only for testing purposes
+		// cx.CoretoStaking?.stakeToken("60000", "3555807")
+	}, [activeChainId, isActive])
 
 	return (
 		<div
