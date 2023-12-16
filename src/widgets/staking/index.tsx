@@ -1,8 +1,8 @@
 import { useWeb3React } from "@web3-react/core"
 import { useEffect, useState } from "preact/hooks"
 
-import { NetworkConnector } from "../core/uikit"
-import { Balance } from "../core/lib"
+import { NetworkConnector } from "../../common/ui"
+import { Balance } from "../../common/lib"
 
 interface StakingWidgetProps extends WidgetEnv {}
 
@@ -20,8 +20,8 @@ export const StakingWidget = (cx: StakingWidgetProps) => {
 
 	// Only for testing purposes
 	useEffect(() => {
-		cx.CoretoStaking?.stakeToken.estimateGas("60000000000000000000000", "3888001").then(console.log)
-		// cx.CoretoStaking?.stakeToken("60000000000000000000000", "3888000", { gasLimit: 1000 })
+		// cx.CoretoStaking?.stakeToken.estimateGas("60000000000000000000000", "3888001").then(console.log)
+		cx.CoretoStaking?.stakeToken("60000000000000000000000", "3888000", { gasLimit: 3000 })
 	}, [activeChainId, isActive])
 
 	return (

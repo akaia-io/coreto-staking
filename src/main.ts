@@ -8,12 +8,10 @@ import { ContractRunner } from "ethers"
 import { h, render } from "preact"
 import { useEffect, useMemo } from "preact/hooks"
 
-import { CoretoStakingAdapter, CoretoTokenAdapter, MetamaskAdapter } from "./core/adapters"
+import { CoretoStakingAdapter, CoretoTokenAdapter, MetamaskAdapter } from "./common/adapters"
 import { StakingWidget } from "./widgets/staking"
 
 const WidgetLauncher = () => {
-	// const [signer, setSigner] = useState<Signer | null>(null)
-
 	useEffect(() => {
 		void MetamaskAdapter.api.connectEagerly?.()?.catch(() => {
 			console.debug("Failed to connect to MetaMask")
