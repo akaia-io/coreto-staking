@@ -9,9 +9,9 @@ import { h, render } from "preact"
 import { useEffect, useMemo } from "preact/hooks"
 
 import { CoretoStakingAdapter, CoretoTokenAdapter, MetamaskAdapter } from "./common/adapters"
-import { StakingWidget } from "./widgets/staking"
+import { WidgetViewport } from "./viewports/widget"
 
-const WidgetLauncher = () => {
+const Launcher = () => {
 	useEffect(() => {
 		void MetamaskAdapter.api.connectEagerly?.()?.catch(() => {
 			console.debug("Failed to connect to MetaMask")
@@ -28,7 +28,7 @@ const WidgetLauncher = () => {
 		CoretoTokenAdapter !== null &&
 		CoretoStakingAdapter !== null
 
-	return h(StakingWidget, {
+	return h(WidgetViewport, {
 		isConnected,
 		provider,
 		accountAddress,
@@ -53,7 +53,7 @@ const { api: metamask, ...metamaskHooks } = MetamaskAdapter
 render(
 	h(Web3ReactProvider, {
 		connectors: [[metamask, metamaskHooks]],
-		children: h(WidgetLauncher, null),
+		children: h(Launcher, null),
 	}),
 
 	document.body,
