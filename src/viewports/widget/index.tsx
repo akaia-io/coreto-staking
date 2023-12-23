@@ -18,13 +18,16 @@ export const WidgetViewport = (cx: WidgetViewportProps) => {
 
 	const [error, setError] = useState<Error | null>(null)
 
-	// Only for testing purposes
 	useEffect(() => {
-		if (cx.accountAddress !== null) {
-			cx.CoretoStaking?.getTokenStakingIdByAddress(cx.accountAddress).then(console.log)
+		if (typeof cx.accountAddress === "string") {
+			cx.CoretoStaking?.getTokenStakingIdByAddress(cx.accountAddress).then((response) =>
+				console.log(response),
+			)
+
+			// Only for testing purposes
 			// cx.CoretoStaking?.stakeToken("60000000000000000000000", "3888000", { gasLimit: 3000 })
 		}
-	}, [activeChainId, isActive])
+	}, [activeChainId, cx, isActive])
 
 	return (
 		<div
